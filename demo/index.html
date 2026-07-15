@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dra. Ana Silva — Dentista em São Paulo</title>
+  <meta name="description" content="Dra. Ana Silva · CRO-SP 12.345 · Clínica Geral e Estética em São Paulo. Agende pelo WhatsApp." />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1a2332;
+      --ink-soft: #4a5568;
+      --bg: #e8edf4;
+      --surface: #dfe6ef;
+      --surface-2: #f0f3f8;
+      --card: #f7f9fc;
+      --line: #c8d2e0;
+      --accent: #2a5a8a;
+      --accent-deep: #1a3d5c;
+      --accent-soft: #d4e3f0;
+      --warm: #d4a574;
+      --warm-deep: #b8845a;
+      --wa: #1f9b5c;
+      --wa-deep: #178a4f;
+      --banner: #fff8e8;
+      --banner-ink: #6b5420;
+      --max: 1040px;
+      --font: "Manrope", system-ui, sans-serif;
+      --serif: "Source Serif 4", Georgia, serif;
+      --banner-h: 40px;
+      --nav-h: 64px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      padding-top: calc(var(--banner-h) + var(--nav-h));
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(100% - 2rem, var(--max));
+      margin-inline: auto;
+    }
+
+    .demo-banner {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: var(--banner-h);
+      background: var(--banner);
+      color: var(--banner-ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      padding: 0 1rem;
+      font-size: 0.76rem;
+      border-bottom: 1px solid rgba(107, 84, 32, 0.12);
+    }
+
+    .demo-banner a {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .site-header {
+      position: fixed;
+      top: var(--banner-h);
+      left: 0; right: 0;
+      z-index: 90;
+      height: var(--nav-h);
+      background: rgba(232, 237, 244, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+    }
+
+    .site-header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+      color: var(--accent-deep);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.85rem 1.35rem;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s, background 0.2s;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-sm {
+      font-size: 0.82rem;
+      padding: 0.5rem 0.95rem;
+    }
+
+    .btn-wa {
+      background: var(--wa);
+      color: #fff;
+      box-shadow: 0 8px 22px rgba(31, 155, 92, 0.28);
+    }
+
+    .btn-wa:hover { background: var(--wa-deep); }
+
+    .btn-wa svg {
+      width: 1.1rem;
+      height: 1.1rem;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    .hero {
+      padding: 2.5rem 0 3.5rem;
+      background:
+        radial-gradient(ellipse 60% 55% at 90% 10%, rgba(42,90,138,0.18), transparent 55%),
+        radial-gradient(ellipse 40% 40% at 0% 80%, rgba(212,165,116,0.12), transparent 50%),
+        linear-gradient(180deg, #dce4ef 0%, var(--bg) 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero-photo-wrap { order: -1; }
+
+    .hero-photo {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 18px;
+      box-shadow: 0 20px 48px rgba(26, 35, 50, 0.18);
+      animation: fadeIn 0.85s ease-out both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-content { animation: fadeUp 0.75s ease-out 0.1s both; }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--ink-soft);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5.5vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-role {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.85rem;
+    }
+
+    .hero-desc {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+      line-height: 1.45;
+      margin-bottom: 1.15rem;
+      max-width: 28rem;
+    }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .pill {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--ink-soft);
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+    }
+
+    section { padding: 3.75rem 0; }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.65rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.4rem, 3.5vw, 1.85rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+      color: var(--ink);
+    }
+
+    .section-lead {
+      color: var(--ink-soft);
+      font-size: 1rem;
+      margin-bottom: 1.75rem;
+      max-width: 34rem;
+    }
+
+    /* Sobre */
+    .sobre {
+      background: var(--surface-2);
+    }
+
+    .sobre-grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .sobre-text {
+      font-size: 1.05rem;
+      color: var(--ink-soft);
+      max-width: 36rem;
+      line-height: 1.65;
+    }
+
+    .highlights { display: grid; gap: 0.75rem; }
+
+    .highlight {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.85rem;
+      padding: 1rem 1.1rem;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+
+    .highlight-icon {
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      display: grid;
+      place-items: center;
+      font-size: 1.05rem;
+    }
+
+    .highlight strong {
+      display: block;
+      font-size: 0.98rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .highlight span {
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+    }
+
+    /* Serviços */
+    .servicos {
+      background:
+        linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
+    }
+
+    .servicos-grid { display: grid; gap: 0; }
+
+    .service {
+      display: grid;
+      grid-template-columns: 2.25rem 1fr;
+      gap: 0.85rem;
+      padding: 1.15rem 0;
+      border-bottom: 1px solid var(--line);
+      animation: fadeUp 0.6s ease-out both;
+    }
+
+    .service:nth-child(1) { animation-delay: 0.05s; }
+    .service:nth-child(2) { animation-delay: 0.1s; }
+    .service:nth-child(3) { animation-delay: 0.15s; }
+    .service:nth-child(4) { animation-delay: 0.2s; }
+    .service:nth-child(5) { animation-delay: 0.25s; }
+    .service:nth-child(6) { animation-delay: 0.3s; }
+
+    .service:first-child { border-top: 1px solid var(--line); }
+
+    .service-num {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--warm-deep);
+      padding-top: 0.15rem;
+    }
+
+    .service h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    .service p {
+      font-size: 0.92rem;
+      color: var(--ink-soft);
+    }
+
+    /* Resultados / fotos */
+    .resultados {
+      background: var(--accent-deep);
+      color: #fff;
+    }
+
+    .resultados .section-label { color: var(--warm); }
+    .resultados .section-title { color: #fff; }
+    .resultados .section-lead { color: rgba(255,255,255,0.75); }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      aspect-ratio: 1;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+
+    .gallery-item:hover img { transform: scale(1.04); }
+
+    .gallery-item figcaption {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      padding: 0.65rem 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: linear-gradient(transparent, rgba(0,0,0,0.65));
+      color: #fff;
+    }
+
+    .gallery-note {
+      margin-top: 1rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* Prova social — cards */
+    .depoimento {
+      background:
+        radial-gradient(ellipse 50% 40% at 50% 0%, rgba(42,90,138,0.1), transparent 60%),
+        var(--surface-2);
+    }
+
+    .reviews {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .review-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.35rem 1.25rem;
+      display: grid;
+      gap: 0.85rem;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .review-card:hover {
+      border-color: #a8bdd4;
+      box-shadow: 0 10px 28px rgba(26, 35, 50, 0.08);
+    }
+
+    .review-stars {
+      color: var(--warm-deep);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+    }
+
+    .review-card blockquote {
+      font-family: var(--serif);
+      font-size: 1.02rem;
+      font-weight: 500;
+      line-height: 1.45;
+      color: var(--ink);
+    }
+
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .review-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--accent-soft);
+    }
+
+    .review-author strong {
+      display: block;
+      font-size: 0.9rem;
+    }
+
+    .review-author span {
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+    }
+
+    /* FAQ */
+    .faq-section { background: var(--bg); }
+
+    .faq-list {
+      display: grid;
+      gap: 0.9rem;
+      max-width: 40rem;
+    }
+
+    .faq {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1.15rem 1.2rem;
+    }
+
+    .faq strong {
+      display: block;
+      font-size: 0.98rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .faq span {
+      font-size: 0.92rem;
+      color: var(--ink-soft);
+      line-height: 1.45;
+    }
+
+    /* Local */
+    .local {
+      background: var(--surface);
+    }
+
+    .local-row {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
+      align-items: start;
+      max-width: 36rem;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.25rem;
+    }
+
+    .local-mark {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 12px;
+      background: var(--accent-soft);
+      display: grid;
+      place-items: center;
+      font-size: 1.25rem;
+    }
+
+    .local-row strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .local-row p {
+      color: var(--ink-soft);
+      font-size: 0.98rem;
+    }
+
+    .contato {
+      background:
+        linear-gradient(160deg, var(--accent-deep) 0%, #243d56 100%);
+      color: #fff;
+      text-align: center;
+      padding: 4rem 0;
+    }
+
+    .contato h2 {
+      font-size: clamp(1.45rem, 3.5vw, 1.9rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.65rem;
+    }
+
+    .contato-sub {
+      font-size: 1.02rem;
+      opacity: 0.88;
+      max-width: 28rem;
+      margin: 0 auto 1.75rem;
+    }
+
+    .contato .btn-wa {
+      box-shadow: 0 10px 28px rgba(0,0,0,0.28);
+    }
+
+    .site-footer {
+      padding: 1.75rem 0;
+      text-align: center;
+      background: #121820;
+    }
+
+    .site-footer p {
+      font-size: 0.85rem;
+      color: #8a95a5;
+    }
+
+    @media (min-width: 640px) {
+      .gallery {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+      }
+
+      .gallery-item:nth-child(1),
+      .gallery-item:nth-child(4) {
+        aspect-ratio: 3 / 4;
+      }
+
+      .reviews {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.15rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .hero { padding: 3.5rem 0 4.5rem; }
+
+      .hero-grid {
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 3.5rem;
+      }
+
+      .hero-photo-wrap { order: 0; }
+
+      .hero-photo {
+        aspect-ratio: 4 / 5;
+        max-height: 520px;
+      }
+
+      .sobre-grid {
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 3.5rem;
+        align-items: start;
+      }
+
+      .servicos-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0 2.5rem;
+      }
+
+      .service:first-child { border-top: none; }
+
+      .service:nth-child(-n+2) {
+        border-top: 1px solid var(--line);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-photo, .hero-content, .service, .gallery-item img {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <aside class="demo-banner" role="note">
+    ⚠️ Demonstração do Kit Presença Online.
+    <a href="../">Clique aqui para criar a sua.</a>
+  </aside>
+
+  <header class="site-header">
+    <div class="container">
+      <span class="brand">Dra. Ana Silva</span>
+      <a
+        class="btn btn-wa btn-sm"
+        href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20Dra.%20Ana!%20Vi%20seu%20perfil%20e%20gostaria%20de%20agendar%20uma%20consulta."
+        target="_blank"
+        rel="noopener noreferrer"
+      >Agendar consulta</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <span class="hero-tag">✓ CRO-SP 12.345</span>
+          <h1>Dra. Ana Silva</h1>
+          <p class="hero-role">Dentista · Clínica Geral e Estética</p>
+          <p class="hero-desc">Cuidando do seu sorriso com atenção e dedicação</p>
+          <div class="trust-row">
+            <span class="pill">São Paulo — SP</span>
+            <span class="pill">Horários flexíveis</span>
+            <span class="pill">Avaliação gratuita</span>
+          </div>
+          <a
+            class="btn btn-wa"
+            href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20Dra.%20Ana!%20Vi%20seu%20perfil%20e%20gostaria%20de%20agendar%20uma%20consulta."
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.28-.14-1.64-.81-1.9-.9-.25-.1-.44-.14-.62.14-.18.27-.71.9-.87 1.08-.16.18-.32.2-.6.07-.28-.14-1.17-.43-2.23-1.37-.82-.74-1.38-1.65-1.54-1.93-.16-.27-.02-.42.12-.56.13-.12.28-.32.42-.48.14-.16.18-.27.28-.45.1-.18.05-.34-.02-.48-.07-.14-.62-1.5-.85-2.05-.22-.53-.45-.46-.62-.47h-.53c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.3s.98 2.67 1.12 2.85c.14.18 1.93 2.95 4.68 4.14.65.28 1.16.45 1.56.57.65.21 1.25.18 1.72.11.53-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.11-.25-.18-.53-.32z"/><path d="M12.04 2C6.58 2 2.15 6.41 2.15 11.85c0 1.74.46 3.44 1.33 4.94L2 22l5.36-1.4a9.86 9.86 0 0 0 4.68 1.19h.01c5.46 0 9.89-4.41 9.89-9.85C21.94 6.41 17.5 2 12.04 2zm0 17.96h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.18.83.85-3.1-.2-.32a8.16 8.16 0 0 1-1.25-4.34c0-4.52 3.7-8.2 8.26-8.2s8.26 3.68 8.26 8.2-3.7 8.26-8.25 8.26z"/></svg>
+            Agendar pelo WhatsApp
+          </a>
+        </div>
+        <div class="hero-photo-wrap">
+          <img
+            class="hero-photo"
+            src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=900&q=80"
+            alt="Dra. Ana Silva, dentista"
+            width="900"
+            height="1125"
+            fetchpriority="high"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sobre" id="sobre">
+    <div class="container">
+      <p class="section-label">Quem sou eu</p>
+      <h2 class="section-title">Sobre mim</h2>
+      <div class="sobre-grid" style="margin-top: 1.25rem;">
+        <p class="sobre-text">
+          Formada em Odontologia, com foco em clínica geral e procedimentos estéticos.
+          Atendo pacientes que buscam um cuidado próximo e personalizado, com horários
+          flexíveis. Meu compromisso é que você se sinta acolhido desde o primeiro contato.
+        </p>
+        <div class="highlights">
+          <div class="highlight">
+            <span class="highlight-icon" aria-hidden="true">📍</span>
+            <div>
+              <strong>São Paulo — SP</strong>
+              <span>Atendimento em clínica parceira</span>
+            </div>
+          </div>
+          <div class="highlight">
+            <span class="highlight-icon" aria-hidden="true">⏰</span>
+            <div>
+              <strong>Horários flexíveis</strong>
+              <span>Encaixe que cabe na sua rotina</span>
+            </div>
+          </div>
+          <div class="highlight">
+            <span class="highlight-icon" aria-hidden="true">🎓</span>
+            <div>
+              <strong>Clínica e estética</strong>
+              <span>Cuidado completo do sorriso</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="servicos" id="servicos">
+    <div class="container">
+      <p class="section-label">Serviços</p>
+      <h2 class="section-title">O que eu faço</h2>
+      <div class="servicos-grid" style="margin-top: 1.5rem;">
+        <article class="service">
+          <span class="service-num">01</span>
+          <div>
+            <h3>Limpeza e profilaxia</h3>
+            <p>Remoção de tártaro e polimento dental</p>
+          </div>
+        </article>
+        <article class="service">
+          <span class="service-num">02</span>
+          <div>
+            <h3>Clareamento dental</h3>
+            <p>Resultado em até 2 sessões</p>
+          </div>
+        </article>
+        <article class="service">
+          <span class="service-num">03</span>
+          <div>
+            <h3>Restaurações</h3>
+            <p>Resina de alta estética, cor natural</p>
+          </div>
+        </article>
+        <article class="service">
+          <span class="service-num">04</span>
+          <div>
+            <h3>Estética dental</h3>
+            <p>Facetas e procedimentos de acabamento</p>
+          </div>
+        </article>
+        <article class="service">
+          <span class="service-num">05</span>
+          <div>
+            <h3>Avaliação gratuita</h3>
+            <p>Primeira consulta sem custo</p>
+          </div>
+        </article>
+        <article class="service">
+          <span class="service-num">06</span>
+          <div>
+            <h3>Prevenção</h3>
+            <p>Acompanhamento e orientação contínua</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="resultados" id="resultados">
+    <div class="container">
+      <p class="section-label">Resultados</p>
+      <h2 class="section-title">Sorrisos e procedimentos</h2>
+      <p class="section-lead">Espaço para fotos reais de pacientes e casos — o que mais passa confiança em 30 segundos.</p>
+      <div class="gallery">
+        <figure class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=600&q=75"
+            alt="Ambiente clínico"
+            width="600"
+            height="600"
+            loading="lazy"
+          />
+          <figcaption>Ambiente de atendimento</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=600&q=75"
+            alt="Sorriso após procedimento"
+            width="600"
+            height="600"
+            loading="lazy"
+          />
+          <figcaption>Resultado · clareamento</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=600&q=75"
+            alt="Procedimento odontológico"
+            width="600"
+            height="600"
+            loading="lazy"
+          />
+          <figcaption>Procedimento em consultório</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=75"
+            alt="Paciente sorrindo"
+            width="600"
+            height="600"
+            loading="lazy"
+          />
+          <figcaption>Paciente · pós-atendimento</figcaption>
+        </figure>
+      </div>
+      <p class="gallery-note">Na entrega real, estas fotos seriam do seu próprio portfólio (com autorização dos pacientes).</p>
+    </div>
+  </section>
+
+  <section class="depoimento" id="depoimento">
+    <div class="container">
+      <p class="section-label">Prova social</p>
+      <h2 class="section-title">O que pacientes dizem</h2>
+      <p class="section-lead">Depoimentos curtos — o paciente vê que outras pessoas já confiaram.</p>
+      <div class="reviews">
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 estrelas">★★★★★</div>
+          <blockquote>“Passei confiança logo de cara. Expliquei o que me incomodava e ela me orientou sem pressa.”</blockquote>
+          <div class="review-author">
+            <img class="review-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=100&q=70" alt="" width="40" height="40" loading="lazy" />
+            <div>
+              <strong>Marina R.</strong>
+              <span>Limpeza · 2025</span>
+            </div>
+          </div>
+        </article>
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 estrelas">★★★★★</div>
+          <blockquote>“O clareamento ficou natural. Me senti segura do agendamento até o resultado final.”</blockquote>
+          <div class="review-author">
+            <img class="review-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=70" alt="" width="40" height="40" loading="lazy" />
+            <div>
+              <strong>Juliana M.</strong>
+              <span>Clareamento · 2025</span>
+            </div>
+          </div>
+        </article>
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 estrelas">★★★★★</div>
+          <blockquote>“Horário flexível e atendimento humano. Marquei pelo WhatsApp e fui atendida no mesmo dia.”</blockquote>
+          <div class="review-author">
+            <img class="review-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=70" alt="" width="40" height="40" loading="lazy" />
+            <div>
+              <strong>Carlos S.</strong>
+              <span>Avaliação · 2025</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section" id="duvidas">
+    <div class="container">
+      <p class="section-label">Dúvidas</p>
+      <h2 class="section-title">Perguntas frequentes</h2>
+      <div class="faq-list" style="margin-top: 1.25rem;">
+        <div class="faq">
+          <strong>Quanto custa uma consulta?</strong>
+          <span>A avaliação inicial é gratuita. Valores de procedimentos são combinados após a avaliação, com transparência.</span>
+        </div>
+        <div class="faq">
+          <strong>Onde você atende?</strong>
+          <span>Em clínica parceira no bairro Vila Mariana, São Paulo. Confirmo o endereço exato no agendamento.</span>
+        </div>
+        <div class="faq">
+          <strong>Aceita convênio?</strong>
+          <span>Atendo particular. Posso emitir recibo para reembolso junto ao seu plano, quando aplicável.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="local" id="onde">
+    <div class="container">
+      <p class="section-label">Local</p>
+      <h2 class="section-title">Onde atendo</h2>
+      <div class="local-row" style="margin-top: 1.25rem;">
+        <span class="local-mark" aria-hidden="true">📍</span>
+        <div>
+          <strong>Vila Mariana — São Paulo, SP</strong>
+          <p>Clínica parceira. Endereço confirmado na hora de marcar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contato" id="contato">
+    <div class="container">
+      <h2>Pronta para te atender</h2>
+      <p class="contato-sub">Entre em contato pelo WhatsApp e agendamos no horário mais conveniente para você.</p>
+      <a
+        class="btn btn-wa"
+        href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta."
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.28-.14-1.64-.81-1.9-.9-.25-.1-.44-.14-.62.14-.18.27-.71.9-.87 1.08-.16.18-.32.2-.6.07-.28-.14-1.17-.43-2.23-1.37-.82-.74-1.38-1.65-1.54-1.93-.16-.27-.02-.42.12-.56.13-.12.28-.32.42-.48.14-.16.18-.27.28-.45.1-.18.05-.34-.02-.48-.07-.14-.62-1.5-.85-2.05-.22-.53-.45-.46-.62-.47h-.53c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.3s.98 2.67 1.12 2.85c.14.18 1.93 2.95 4.68 4.14.65.28 1.16.45 1.56.57.65.21 1.25.18 1.72.11.53-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.11-.25-.18-.53-.32z"/><path d="M12.04 2C6.58 2 2.15 6.41 2.15 11.85c0 1.74.46 3.44 1.33 4.94L2 22l5.36-1.4a9.86 9.86 0 0 0 4.68 1.19h.01c5.46 0 9.89-4.41 9.89-9.85C21.94 6.41 17.5 2 12.04 2zm0 17.96h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.18.83.85-3.1-.2-.32a8.16 8.16 0 0 1-1.25-4.34c0-4.52 3.7-8.2 8.26-8.2s8.26 3.68 8.26 8.2-3.7 8.26-8.25 8.26z"/></svg>
+        Falar com a Dra. Ana
+      </a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© Dra. Ana Silva · CRO-SP 12.345 · São Paulo</p>
+    </div>
+  </footer>
+</body>
+</html>
